@@ -1,5 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth"
 import GoogleProvider from 'next-auth/providers/google'
+import GitHubProvider from 'next-auth/providers/github'
 
 export const authOptions: NextAuthOptions = {
     providers: [
@@ -12,7 +13,10 @@ export const authOptions: NextAuthOptions = {
                     access_type: "offline",
                     response_type: "code"
                 }
-            }
+            },
+        }), GitHubProvider({
+            clientId: process.env.GITHUB_ID as string,
+            clientSecret: process.env.GITHUB_SECRET as string,
         })
     ]
 }
