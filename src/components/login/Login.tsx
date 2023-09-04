@@ -5,7 +5,7 @@ const Login = () => {
     const { data: session } = useSession();
     if (session) {
         return <>
-            <p>Signed in as {session?.user?.name}</p>
+            <p>Signed in as {session?.user?.email}</p>
             <Button
                 variant="contained"
                 color="error"
