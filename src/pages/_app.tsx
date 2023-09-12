@@ -7,6 +7,7 @@ import darkTheme from '@/theme/darkTheme';
 import lightTheme from '@/theme/lightTheme';
 import Header from '@/components/Header';
 import React from 'react';
+import Layout from '@/components/Layout';
 
 const ColorModeContext = createContext({ toggleColorMode: () => { } });
 
@@ -60,7 +61,9 @@ export default function App({
         <SessionProvider session={session}>
           <CssBaseline />
           <Header ColorModeContext={ColorModeContext} />
-          <Component {...pageProps} />
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
         </SessionProvider>
       </ThemeProvider>
     </ColorModeContext.Provider>
