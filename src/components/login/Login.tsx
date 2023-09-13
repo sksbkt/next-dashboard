@@ -14,8 +14,15 @@ const Login = () => {
         </>
     }
     return <>
-        Please log in<br />
-        <Button variant="contained" color="success" onClick={() => signIn()}>Sign in</Button>
+        <h2>
+            Please log in
+        </h2>
+        <br />
+        <Button
+            variant="contained"
+            color="success"
+            onClick={() => signIn()}
+        >Sign in</Button>
     </>;
 };
 

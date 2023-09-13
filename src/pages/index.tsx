@@ -1,7 +1,4 @@
-import Head from 'next/head';
-import Header from '@/components/Header';
 import Dashboard from '@/pages/dashboard';
-import SideMenu from '@/components/SideMenu';
 import { useSession } from 'next-auth/react';
 import Login from '@/components/Login';
 
