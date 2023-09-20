@@ -14,9 +14,9 @@ const Login = () => {
         </>
     }
     return <>
-        <h2>
+        {/* <h2>
             Please log in
-        </h2>
+        </h2> */}
         <br />
         <Button
             variant="contained"
