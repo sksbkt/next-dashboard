@@ -8,15 +8,18 @@ import lightTheme from '@/theme/lightTheme';
 import Header from '@/components/Header';
 import React from 'react';
 import Layout from '@/components/Layout';
+import { Session } from 'next-auth';
 
 const ColorModeContext = createContext({ toggleColorMode: () => { } });
+
+interface customPageProps {
+  session: Session
+}
 
 export default function App({
   Component,
   pageProps: { session, ...pageProps }
-}: AppProps) {
-
-
+}: AppProps<customPageProps>) {
 
   const [mode, setMode] = useState<'light' | 'dark'>('dark');
 
@@ -27,15 +30,6 @@ export default function App({
       },
     }),
     [],
-  );
-  const theme = React.useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode],
   );
 
   const darkThemeChosen = React.useMemo(

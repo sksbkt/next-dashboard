@@ -5,7 +5,6 @@ import Login from "@/components/Login";
 
 function SignIn() {
     const { data: session } = useSession();
-    console.log('Called');
 
     return <Box
         sx={{

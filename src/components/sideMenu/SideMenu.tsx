@@ -51,13 +51,14 @@ const closedMixin = (theme: Theme): CSSObject => ({
 });
 
 function SideMenu() {
-    const menuRouteList = ['data', 'profile', 'settings', ''];
-    const menuListTranslations = ['Data', 'Profile', 'Settings', 'Sign Out'];
+    const menuRouteList = ['', 'data', 'profile', 'settings', ''];
+    const menuListTranslations = ['Home', 'Data', 'Profile', 'Settings', 'Sign Out'];
     const menuListIcons = [
-        <EqualizerIcon key={0} />,
-        <Person2Icon key={1} />,
-        <SettingsIcon key={2} />,
-        <ExitToAppIcon key={3} />
+        <HomeIcon key={0} />,
+        <EqualizerIcon key={1} />,
+        <Person2Icon key={2} />,
+        <SettingsIcon key={3} />,
+        <ExitToAppIcon key={4} />
     ];
 
 
@@ -73,8 +74,8 @@ function SideMenu() {
         setOpen(prev => !prev);
     };
 
-    const handleListItemClick = (action: string) => {
-        if (session && action == '')
+    const handleListItemClick = (action: string, index: number) => {
+        if (session && action == '' && index != 0)
             signOut();
     }
 
@@ -119,7 +120,7 @@ function SideMenu() {
                         >
 
                             <ListItemButton
-                                onClick={() => handleListItemClick(menuRouteList[index])}
+                                onClick={() => handleListItemClick(menuRouteList[index], index)}
                                 sx={{
                                     minHeight: 48,
                                     justifyContent: open ? 'initial' : 'center',

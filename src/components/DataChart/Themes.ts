@@ -25,7 +25,7 @@ export const darkOptions: ChartConfiguration["options"] = {
             },
             ticks: {
                 color: "#fff"
-            }
+            },
         },
         x: {
             grid: {
@@ -35,5 +35,5 @@ export const darkOptions: ChartConfiguration["options"] = {
                 color: "#fff"
             }
         }
-    }
+    },
 }

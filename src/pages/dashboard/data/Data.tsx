@@ -1,7 +1,10 @@
 import React from "react";
+import DataComponent from '@/components/Dashboard/Data'
 
 function Data() {
-    return <div>Data</div>;
+    return <>
+        <DataComponent />
+    </>;
 }
 
 export default Data;
