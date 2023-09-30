@@ -17,7 +17,7 @@ const Layout = (props: any) => {
             </Head>
             <main
                 className={scss.layout}
-                style={{ padding: session ? "0 24px 0 80px" : 0 }}
+                style={{ padding: session ? "0 24px 90px 80px" : 0 }}
             >
                 {session && <SideMenu />}
                 {props.children}

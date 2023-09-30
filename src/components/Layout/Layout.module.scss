@@ -1,6 +1,14 @@
 .layout {
     max-width: 85rem;
     margin: auto;
+    min-height: calc(100vh - 110px);
+
+    @media screen and (max-width:600px) {
+        min-height: calc(100vh + 50px);
+
+    }
+
+    position: relative;
 
     @media screen and (min-width: 1700px) {
         padding: 0 24px 0 0;

@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import { signIn, signOut, useSession } from 'next-auth/react';
+import NextLink from 'next/link'
 
 import {
     Container,
@@ -14,12 +15,14 @@ import {
     MenuItem,
     Button,
     Tooltip,
-    useMediaQuery
+    useMediaQuery,
+    useTheme
 } from '@mui/material';
 
 import AdbIcon from '@mui/icons-material/Adb';
 import MenuIcon from '@mui/icons-material/Menu';
 import ThemeToggleButton from '@/components/ThemeToggleButton';
+import { LINKS } from '@/helper/Util';
 
 
 const pages = ['Products', 'Pricing', 'Blog'];
@@ -27,6 +30,8 @@ export type HeaderProps = {
     ColorModeContext: React.Context<{ toggleColorMode: () => void }>
 }
 const Header = (props: HeaderProps) => {
+
+    const theme = useTheme();
 
     const colorModeContext = props.ColorModeContext;
     const { data: session } = useSession();
@@ -128,6 +133,7 @@ const Header = (props: HeaderProps) => {
                         <Menu
                             sx={{ mt: '45px' }}
                             id="menu-appbar"
+                            disableScrollLock={true}
                             anchorEl={anchorElUser}
                             anchorOrigin={{
                                 vertical: 'top',
@@ -142,6 +148,17 @@ const Header = (props: HeaderProps) => {
                             onClose={handleCloseUserMenu}
                         >
 
+                            <MenuItem>
+                                <NextLink
+                                    href={LINKS.profile}
+                                    style={{
+                                        color: theme.palette.text.primary,
+                                        textDecoration: 'none'
+                                    }}
+                                >
+                                    <Typography textAlign="center">Profile</Typography>
+                                </NextLink>
+                            </MenuItem>
                             <MenuItem onClick={() => session ? signOut() : signIn()}>
                                 <Typography textAlign="center">{session ? 'Logout' : 'Login'}</Typography>
                             </MenuItem>
