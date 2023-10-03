@@ -1,9 +1,9 @@
 import React from "react";
 import scss from './Layout.module.scss';
 import { useSession } from 'next-auth/react';
-import SideMenu from "@/components/SideMenu";
 import Head from "next/head";
 import Footer from "@/components/Footer";
+import SideMenu from "@/components/SideMenu";
 
 const Layout = (props: any) => {
     const { data: session } = useSession();

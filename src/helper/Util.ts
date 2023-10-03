@@ -36,3 +36,15 @@ export const months = (config: any) => {
 
     return values;
 }
+
+
+export const validationType = {
+    firstName: { regex: "^[A-Za-z][A-Za-z0-9_]{1,29}$", errorText: "must be more than one character" },
+    lastName: { regex: "^[A-Za-z][A-Za-z0-9_]{1,29}$", errorText: "must be more than one character" }
+}
+
+export const formValidation = (value: string, type: any) => {
+    console.log(type.regex);
+
+    return { value: value.match(type.regex) ? true : false, errorText: value.match(type.regex) ? type.errorText : '' };
+}

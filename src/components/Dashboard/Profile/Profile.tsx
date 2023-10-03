@@ -1,23 +1,48 @@
+import { formValidation, validationType } from "@/helper/Util";
 import { Avatar, Box, Button, Checkbox, FormControlLabel, Grid, Paper, TextField, Typography } from "@mui/material";
 import { useSession } from "next-auth/react";
-import React from "react";
+import React, { useState } from "react";
 
 const ProfileComponent = () => {
     const { data: session } = useSession();
-    const handleSubmit = () => {
 
-    }
-    const handleFormChange = () => {
+    const names = session?.user?.name ? session.user.name.split(" ") : [];
 
-    }
+    const firstName = names[0];
+    const lastName = names.length > 1 ? names[names.length - 1] : '';
+    const emailAddress = session?.user?.email;
 
-    const formData = {
-        firstName: '',
-        lastName: '',
-        email: '',
+    const [formData, setFormData] = useState({
+        firstName: firstName,
+        lastName: lastName,
+        email: emailAddress,
         password: '',
         confirmPassword: '',
         receiveEmails: false
+    });
+
+
+    const handleFormChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const { name, value, checked } = event.target;
+
+        setFormData(
+            (prevState: any) => ({
+                ...prevState,
+                [name]: name === "receiveEmails" ? checked : value
+            })
+        )
+
+    }
+
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        console.log(formData);
+
+    }
+
+    const validateField = (event: React.FocusEventHandler<HTMLInputElement | HTMLTextAreaElement> | any) => {
+        console.log(event.target);
+
     }
 
     return (
@@ -44,6 +69,7 @@ const ProfileComponent = () => {
                         <form
                             onSubmit={handleSubmit}
                             style={{ maxWidth: 600, margin: "0 auto" }}
+                            autoComplete="off"
                         >
                             <Grid container spacing={3}>
                                 <Grid item xs={12} sm={6}>
@@ -64,13 +90,15 @@ const ProfileComponent = () => {
                                         name={'lastName'}
                                         value={formData.lastName}
                                         onChange={handleFormChange}
+                                        onBlur={validateField}
 
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={12}>
                                     <TextField
                                         required
                                         fullWidth
+                                        type="email"
                                         label={'email'}
                                         name={'email'}
                                         value={formData.email}
@@ -78,10 +106,11 @@ const ProfileComponent = () => {
 
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={12} >
                                     <TextField
                                         required
                                         fullWidth
+                                        type="password"
                                         label={'password'}
                                         name={'password'}
                                         value={formData.password}
@@ -89,17 +118,18 @@ const ProfileComponent = () => {
 
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={12} >
                                     <TextField
                                         required
                                         fullWidth
-                                        label={'password'}
-                                        name={'password'}
-                                        value={formData.password}
+                                        type="password"
+                                        label={'confirm password'}
+                                        name={'confirmPassword'}
+                                        value={formData.confirmPassword}
                                         onChange={handleFormChange}
                                     />
                                 </Grid>
-                                <Grid item xs={12} sm={6}>
+                                <Grid item xs={12} >
                                     <FormControlLabel
                                         label={'Receive sales analytics emails'}
                                         control={
